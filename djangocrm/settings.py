@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    #local apps
+    # local apps
 
     'crm',
 ]
@@ -79,8 +79,12 @@ WSGI_APPLICATION = 'djangocrm.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME':  'crm2',
+        'USER': 'root',
+        "PASSWORD": 'Technicalking1.',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 
