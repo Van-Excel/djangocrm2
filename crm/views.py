@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-
+from .forms import SignUpForm
 
 # Create your views here.
 
@@ -40,3 +40,36 @@ def logout_user(request):
     logout(request)
     messages.success(request, 'You are logged out')
     return redirect('home')
+
+
+def signup(request):
+
+    #if request is a post, send all data to signupform and do something
+    if request.method == 'POST':
+        #pass request data into signup form created 
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+
+            #authenticate and log them in
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
+
+            user = authenticate(username= username, password = password)
+
+            login(request, user)
+            messages.success(request, 'You have signed up successfully')
+            return redirect('home')
+    else:
+        form = SignUpForm()
+        return render(request, 'signup.html', {'form': form})
+    return render(request, 'signup.html', {'form': form})
+
+
+    
+
+    
+
+
+
+		

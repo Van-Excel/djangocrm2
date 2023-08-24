@@ -2,11 +2,16 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Dsupply CRM</a>
+        <a class="navbar-brand" href="{%url 'home'%}">Dsupply CRM</a>
 
         {% if user.is_authenticated%}
         <li class="nav-item">
             <a class="navbar-brand" href="{%url 'logout_user'%}">Logout</a>
+        </li>
+
+        {%else%}
+        <li class="nav-item">
+            <a class="navbar-brand" href="{%url 'signup'%}">Signup</a>
         </li>
         {% endif%}
        
