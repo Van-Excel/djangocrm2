@@ -6,11 +6,58 @@
 {%block content %}
 
 
-<div class="col-md-6 offset-md-3">
+
 {% if user.is_authenticated %}
 
+<br/>
+<table class="table table-dark table-hover">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Address</th>
+            <th scope="col">City</th>
+            <th scope="col">State</th>
+            <th scope="col">Zipcode</th>
+            <th scope="col">Email</th>
+            <th scope="col">Created At</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        {%if records%}
+        {% for record in records%}
+        <tr class="table-active">
+           
+            <td>{{record.id}}</td>
+            <td>{{record.first_name}}</td>
+            <td>{{record.last_name}}</td>
+            <td>{{record.address}}</td>
+            <td>{{record.city}}</td>
+            
+            <td>{{record.state}}</td>
+            <td>{{record.zipcode}}</td>
+            <td>{{record.email}}</td>
+            <td>{{record.created_at}}</td>
+            
+        </tr>
+        {%endfor%}
+        {%endif%}
 
-  <h1>Welcome</h1>
+    </tbody>
+</table>
+
+
+
+  
+ 
+
+   {{record}}
+
+   
+
+
 
   
 
@@ -46,7 +93,6 @@
 
 
 
-</div>
 
 {% endif %}
 

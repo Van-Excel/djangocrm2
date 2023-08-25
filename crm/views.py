@@ -2,11 +2,17 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import SignUpForm
+from .models import Record
 
 # Create your views here.
 
 
 def home(request):
+
+    
+    records = Record.objects.all()
+
+    
 
     # check to see if they are logging in
     if request.method == 'POST':
@@ -24,16 +30,16 @@ def home(request):
                 request, 'There was an error logging in. Please try again')
             return redirect('home')
 
-    # if the request is not a post then it's a get so we just show them the home page
+    # if the request is not a post then it's a get method so we show them the home page
     else:
-        return render(request, 'home.html', {})
+        return render(request, 'home.html', {'records': records})
 
 
 # login
 
 
-def login_user(request):
-    pass
+#def login_user(request):
+    #pass
 
 
 def logout_user(request):
@@ -61,6 +67,7 @@ def signup(request):
             messages.success(request, 'You have signed up successfully')
             return redirect('home')
     else:
+        #instance of form which we pass as a context 
         form = SignUpForm()
         return render(request, 'signup.html', {'form': form})
     return render(request, 'signup.html', {'form': form})
