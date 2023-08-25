@@ -84,6 +84,7 @@ def new_record(request):
            messages.success(request, "Entry added successfully")
            return redirect('home')
       else:
+        
          news = AddRecord() 
          return render(request, 'new_record.html', {'form':news})
              

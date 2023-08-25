@@ -44,9 +44,23 @@ class SignUpForm(UserCreationForm):
 
 class AddRecord(ModelForm):
 
+    first_name = forms.CharField(label='', required=True, widget=forms.widgets.TextInput(attrs={'placeholder': 'First Name', 'class': 'form-control'}))
+    last_name = forms.CharField(label='',required=True, widget=forms.widgets.TextInput(attrs={'placeholder': 'Last Name', 'class': 'form-control'}))
+    email= forms.CharField(label='',required=True, widget=forms.widgets.TextInput(attrs={'placeholder': 'Email address', 'class': 'form-control'}))
+    address = forms.CharField(label='',required=True, widget=forms.widgets.TextInput(attrs={'placeholder': 'Address', 'class': 'form-control'}))
+    city = forms.CharField(label='',required=True, widget=forms.widgets.TextInput(attrs={'placeholder': 'City', 'class': 'form-control'}))
+    state = forms.CharField(label='',required=True, widget=forms.widgets.TextInput(attrs={'placeholder': 'State', 'class': 'form-control'}))
+    zipcode= forms.CharField(label='',required=True, widget=forms.widgets.TextInput(attrs={'placeholder': 'ZipCode', 'class': 'form-control'}))
+
     class Meta:
         model = Record
-        fields = "__all__"
+        exclude = [ 'created_at']
+
+
+
+
+    
+       
 
 
 		
