@@ -7,6 +7,7 @@
         {% if user.is_authenticated%}
         <li class="nav-item">
             <a class="navbar-brand" href="{%url 'logout_user'%}">Logout</a>
+            <a class="navbar-brand" href="{%url 'new_record'%}">Add Record</a>
         </li>
 
         {%else%}

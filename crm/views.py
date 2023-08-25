@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .forms import SignUpForm
+from .forms import SignUpForm, AddRecord
 from .models import Record
 
 # Create your views here.
@@ -73,7 +73,22 @@ def signup(request):
     return render(request, 'signup.html', {'form': form})
 
 
-    
+def new_record(request): 
+    if request.user.is_authenticated:
+       
+      if request.method == 'POST':
+       form =AddRecord(request.POST)
+       if form.is_valid:
+           
+           form.save()
+           messages.success(request, "Entry added successfully")
+           return redirect('home')
+      else:
+         news = AddRecord() 
+         return render(request, 'new_record.html', {'form':news})
+             
+    else:
+        return redirect('home')
 
     
 
