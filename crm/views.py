@@ -93,6 +93,35 @@ def new_record(request):
 
     
 
+def customer_record(request, pk):
+    if request.user.is_authenticated:
+        #look up record with specific ID
+        customer_record= Record.objects.get(id =pk)
+        return render(request, 'customer_record.html', {'customer_record': customer_record})
+    
+    else:
+        messages.success(request, 'You must be logged in')
+        return redirect('home')
+    
+
+def update_record(request,pk):
+    if request.user.is_authenticated:
+        #query database with pk
+        current_record = Record.objects.get(id=pk)
+        form = AddRecord(instance=current_record)
+        if request.method == 'POST':
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'You have successfully updated the record')
+                return redirect('home')
+        return render(request, 'update_record.html', {'form':form})
+    else:
+        return redirect('home')
+        
+
+
+    
+
 
 
 		
