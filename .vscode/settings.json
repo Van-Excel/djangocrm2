@@ -3,4 +3,16 @@
         "editor.defaultFormatter": "ms-python.python"
     },
     "python.formatting.provider": "none"
+
+
+
+
+
+    //custom settings
+     "workbench.sideBar.location": "right",  
+
 }
+
+
+
+
