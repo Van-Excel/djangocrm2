@@ -118,6 +118,21 @@ def update_record(request,pk):
     else:
         messages.success(request, 'You must be logged in.')
         return redirect('home')
+    
+def delete_record(request, pk):
+    if request.user.is_authenticated:
+        delete = Record.objects.get(id=pk)
+        delete.delete()
+        messages.success(request, 'Record deleted successfully')
+        return redirect('home')
+    else:
+        messages.success(request, 'You are not logged in')
+        return redirect('home')
+
+        
+    
+    
+        
         
 
 
